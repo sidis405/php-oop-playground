@@ -1,61 +1,15 @@
 <?php
 
-class Lavoratore
-{
-    protected $nome;
-
-    public function __construct($nome)
-    {
-        $this->nome = $nome;
-    }
-}
-
-class Azienda
-{
-    protected $staff;
-
-    public function __construct(Staff $staff)
-    {
-        $this->staff = $staff;
-    }
-
-    public function assumi(Lavoratore $lavoratore)
-    {
-        $this->staff->aggiungi($lavoratore);
-    }
-
-    public function mostraListaLavoratori()
-    {
-        return $this->staff->mostraMembri();
-    }
-}
-
-class Staff
-{
-    public $membri = [];
-
-    public function __construct($membri = [])
-    {
-        $this->membri = $membri;
-    }
-
-    public function aggiungi(Lavoratore $lavoratore)
-    {
-        $this->membri[] = $lavoratore;
-    }
-
-    public function mostraMembri()
-    {
-        return $this->membri;
-    }
-}
+use Marvel\Staff;
+use Marvel\Azienda;
+use Marvel\Lavoratore;
 
 $sid = new Lavoratore('Sid');
 
 $staff = new Staff([$sid]);
 
-$acme = new Azienda($staff);
+$marvel = new Azienda($staff);
 
-$acme->assumi(new Lavoratore("Elisa"));
+$marvel->assumi(new Lavoratore("Elisa"));
 
-var_dump($acme->mostraListaLavoratori());
+var_dump($marvel->mostraListaLavoratori());
